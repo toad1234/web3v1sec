@@ -37,7 +37,12 @@ module.exports.createPerson = function (user,callback) {
         person.create(user, callback);
     }
     catch (err){
+        if(err.message === "ValidatorError"){
 
+        }
+        else{
+
+        }
     }
 
 }

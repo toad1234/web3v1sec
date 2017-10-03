@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
 person = require('../models/users.js');
 
 router.get('/persons', function (req, res) {
@@ -14,10 +15,18 @@ router.get('/persons', function (req, res) {
 router.post("/persons", function (req, res) {
     var user = req.body;
     person.createPerson(user, function (err,user) {
-        if(err){
-            throw err;
+        if (err) {
+            console.log('Error Inserting New Data');
+            if (err.name == 'ValidationError') {
+                for (field in err.errors) {
+                    console.log(err.errors[field].message);
+                }
+            }
+            res.send(400);
         }
-        res.json(user)
+        else {
+            res.json(user);
+        }
     })
 });
 
