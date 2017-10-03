@@ -33,7 +33,11 @@ module.exports.getPersons = function (callback, limit) {
 }
 
 module.exports.createPerson = function (user,callback) {
-    personSchema.add({ password:{type: String, required: true}});
-    person.create(user,callback);
+    try {
+        person.create(user, callback);
+    }
+    catch (err){
+
+    }
 
 }

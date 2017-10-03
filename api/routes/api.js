@@ -14,6 +14,9 @@ router.get('/persons', function (req, res) {
 router.post("/persons", function (req, res) {
     var user = req.body;
     person.createPerson(user, function (err,user) {
+        if(err){
+            throw err;
+        }
         res.json(user)
     })
 });
