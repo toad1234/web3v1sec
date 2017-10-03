@@ -1,24 +1,38 @@
 var mongoose = require('mongoose');
 
 
-var personSchema = mongoose.Schema({
+var personSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true
     },
     lastname:{
+        type: String
+    }
+    ,
+    preposition:{
+        type: String,
+        required: false
+    },
+    username:{
+        type: String,
+        required: true
+    },
+    password:{
         type: String,
         required: true
     }
+
 });
+
 var person = module.exports = mongoose.model('persons', personSchema);
 
 module.exports.getPersons = function (callback, limit) {
-    person.find(callback).limit(limit);
+    person.find(callback).select("-password").limit(limit);
 }
 
-module.exports.addUser = function (user,callback) {
-    console.log("creating user");
-    person.create(user, callback);
-    console.log("done creating user");
+module.exports.createPerson = function (user,callback) {
+    personSchema.add({ password:{type: String, required: true}});
+    person.create(user,callback);
+
 }
