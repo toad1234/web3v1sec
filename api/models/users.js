@@ -7,7 +7,8 @@ var personSchema = new mongoose.Schema({
         required: true
     },
     lastname:{
-        type: String
+        type: String,
+        required: true
     }
     ,
     preposition:{
