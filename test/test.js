@@ -19,18 +19,23 @@ describe("Users unittest", function () {
 });
 
 
+
+describe("Post a correct body to the users", function () {
+    it("Should return a json file and a 200 code", function (done) {
+        server.post("api/persons").send({
+            "name": "test",
+            "lastname": "tester",
+            "preposition" : "de",
+            "password": "test22",
+            "username": "koek"}).set('Accept', /application\/json/).expect('Content-type', /json/).expect(200,done);
+    });
+});
+
 /**
  * Bad weather for empty post to /api/persons/
  */
 describe("Post an empty body to the users", function () {
     it("Should return a html file", function (done) {
-        server.post("api/persons").expect("Content-type", /text/, done);
+        server.post("api/persons").send({}).set('Accept', /application\/json/).expect(400,done);
     });
 });
-var str = {"name": "test", "lastname": "tester", "preposition" : "de", "password": "test22", "username": "koek"};
-describe("Post a correct body to the users", function () {
-    it("Should return a json file and a 200 code", function (done) {
-        server.post("api/persons").send(str).set('Accept', /application\/json/).expect('Content-type', /json/).expect(200,done);
-    });
-});
-
