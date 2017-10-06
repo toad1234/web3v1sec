@@ -9,7 +9,7 @@ rating = require('../models/ratings.js');
 router.get('/persons', function (req, res) {
     person.getPersons(function (err, persons) {
         if (err) {
-            res.send(err.message);
+            res.sendStatus(err.message);
         }
         res.json(persons);
     })
@@ -26,7 +26,7 @@ router.post("/persons", function (req, res) {
                     console.log(err.errors[field].message);
                 }
             }
-            res.send(400);
+            res.sendStatus(400);
         }
         else {
             res.json(user);
@@ -38,7 +38,7 @@ router.post("/persons", function (req, res) {
 router.get('/movies', function (req, res) {
     person.getPersons(function (err, movies) {
         if (err) {
-            res.send(err.message);
+            res.sendStatus(err.message);
         }
         res.json(movies);
     })
@@ -55,7 +55,7 @@ router.post("/movies", function (req, res) {
                     console.log(err.errors[field].message);
                 }
             }
-            res.send(400);
+            res.sendStatus(400);
         }
         else {
             res.json(newMovie);
