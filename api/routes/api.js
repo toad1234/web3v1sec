@@ -21,7 +21,7 @@ router.post("/persons", function (req, res) {
     person.createPerson(user, function (err,user) {
         if (err) {
             console.log('Error Inserting New Data');
-            if (err.name == 'ValidationError') {
+            if (err.name === 'ValidationError') {
                 for (field in err.errors) {
                     console.log(err.errors[field].message);
                 }
@@ -50,7 +50,7 @@ router.post("/movies", function (req, res) {
     movie.createMovie(user, function (err,newMovie) {
         if (err) {
             console.log('Error Inserting New Movie');
-            if (err.name == 'ValidationError') {
+            if (err.name === 'ValidationError') {
                 for (field in err.errors) {
                     console.log(err.errors[field].message);
                 }
